@@ -1,8 +1,8 @@
 # SR_FLIPFLOP
 # Aim
-To simulate and synthesis T flipflop using vivado.
+To simulate and synthesis SR flipflop using vivado.
 
-# Software Required:
+# Software Required
 Vivado 2023.2 software.
 
 # Procedure:
@@ -31,24 +31,26 @@ Developed by: Dhivyadharshini S
 Register number: 212222060051
 ```
 ```
-module tff(clk,reset,t,q);
-input clk,reset,t;
+module sr(clk,s,r,rst,q );
+input s,r,clk,rst;
 output reg q;
-always @(posedge clk
+always@(posedge clk)
 begin
-if(reset==1)
-q=0;
+if(rst==1)
+q=1'b0;
 else
 begin
-if(t==0)
-q=q;
-else
-q=~q;
+case({s,r})
+2'b00: q=q;
+2'b01:q=1'b0;
+2'b10:q=1'b1;
+2'b11:q=1'bx;
+endcase
 end
 end
 endmodule
 ```
 # Output
-![image](https://github.com/DhivyadharshiniSS/SR_FLIPFLOP/assets/166376977/0da69697-97e5-4bb2-865e-ee57056be04d)
+![image](https://github.com/DhivyadharshiniSS/SR_FLIPFLOP/assets/166376977/82adcdaa-78bb-4bc0-8a59-7a1673a0209b)
 # Result
-Thus the verilog program for T flipflop has been simulated and verified successfully.
+Thus the verilog program for SR flipflop has been simulated and verified successfully.
